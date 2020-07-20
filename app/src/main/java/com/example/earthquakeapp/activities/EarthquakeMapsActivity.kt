@@ -1,5 +1,6 @@
 package com.example.earthquakeapp.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -41,6 +42,13 @@ class EarthquakeMapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         earthquakeMapsBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_earthquake_maps)
+        
+        earthquakeMapsBinding?.bottomSheetQuake?.imageView4?.setOnClickListener(View.OnClickListener {
+            val intent = Intent(applicationContext,NewsActivity::class.java)
+            intent.putExtra("newsUri","https://earthquake.usgs.gov/earthquakes/eventpage/us7000arr4")
+            startActivity(intent)
+
+        })
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment

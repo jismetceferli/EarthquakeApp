@@ -42,13 +42,6 @@ class EarthquakeMapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         earthquakeMapsBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_earthquake_maps)
-        
-        earthquakeMapsBinding?.bottomSheetQuake?.imageView4?.setOnClickListener(View.OnClickListener {
-            val intent = Intent(applicationContext,NewsActivity::class.java)
-            intent.putExtra("newsUri","https://earthquake.usgs.gov/earthquakes/eventpage/us7000arr4")
-            startActivity(intent)
-
-        })
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -93,10 +86,10 @@ class EarthquakeMapsActivity : AppCompatActivity(), OnMapReadyCallback,
             .flat(true)
             .title(feature.properties.title)
 
-        val mk: Marker = mMap.addMarker(mo)
+        val marker: Marker = mMap.addMarker(mo)
         mMap.animateCamera(CameraUpdateFactory.newLatLng(place))
         if (id != null) {
-            markers.put(mk.id, id)
+            markers.put(marker.id, id)
         }
     }
 

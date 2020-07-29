@@ -1,18 +1,14 @@
 package com.example.earthquakeapp.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.earthquakeapp.EarthquakeHandler
 import com.example.earthquakeapp.R
 import com.example.earthquakeapp.api.EarthquakeRoot
 import com.example.earthquakeapp.api.Feature
 import com.example.earthquakeapp.databinding.ActivityEarthquakeMapsBinding
+import com.example.recyclerviewkotlin.mvvm.EarthquakeViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -53,7 +49,7 @@ class EarthquakeMapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         mMap.setOnMarkerClickListener(this)
 
-        val earthquakeHandler = EarthquakeHandler()
+        val earthquakeHandler = EarthquakeViewModel()
         earthquakeMapsBinding?.earthquakeHandler = earthquakeHandler
 
         bottomSheet = BottomSheetBehavior.from(bottom_sheet_quake)
@@ -81,12 +77,12 @@ class EarthquakeMapsActivity : AppCompatActivity(), OnMapReadyCallback,
 
         val place = LatLng(feature.geometry.coordinates.get(1), feature.geometry.coordinates.get(0))
 
-        val mo = MarkerOptions()
+        val markerOption = MarkerOptions()
             .position(place)
             .flat(true)
             .title(feature.properties.title)
 
-        val marker: Marker = mMap.addMarker(mo)
+        val marker: Marker = mMap.addMarker(markerOption)
         mMap.animateCamera(CameraUpdateFactory.newLatLng(place))
         if (id != null) {
             markers.put(marker.id, id)

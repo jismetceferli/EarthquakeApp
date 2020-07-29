@@ -7,6 +7,7 @@
     <color name="dark_red">#DD4639</color>
     <color name="dark_gold">#946426</color>
     <color name="dark_accent">#1Eaba2</color>
+    <color name="black">#000</color>
 
     <color name="blue">#5c69fe</color>
 </resources>

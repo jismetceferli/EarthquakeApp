@@ -3,6 +3,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
         <variable
             name="quakeViewModel"
             type="com.example.recyclerviewkotlin.mvvm.EarthquakeViewModel" />
@@ -21,6 +27,12 @@
         tools:context=".activities.MainActivity">
 
         <include layout="@layout/content_main" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{showProgress ? View.VISIBLE : View.INVISIBLE}" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

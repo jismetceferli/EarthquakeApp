@@ -2,23 +2,22 @@ package com.example.earthquakeapp.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.earthquakeapp.EarthquakeAdapter
+import com.example.earthquakeapp.util.EarthquakeAdapter
 import com.example.earthquakeapp.R
 import com.example.earthquakeapp.api.EarthquakeRoot
 import com.example.earthquakeapp.databinding.ActivityMainBinding
 import com.example.recyclerviewkotlin.mvvm.EarthquakeViewModel
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity(),EarthquakeAdapter.OnItemCLickListener {
+class MainActivity : AppCompatActivity(),
+    EarthquakeAdapter.OnItemCLickListener {
     val TAG = "geek"
-    companion object{
+
+    companion object {
         const val SINGLE_QUAKE = 1
         const val ALL_QUAKES = 2
     }
@@ -28,21 +27,19 @@ class MainActivity : AppCompatActivity(),EarthquakeAdapter.OnItemCLickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
-
+        val activityMainBinding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        activityMainBinding.showProgress = true
 
         val earthquakeViewModel = EarthquakeViewModel()
 
-        val activityMainBinding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
         activityMainBinding.quakeViewModel = earthquakeViewModel
 
         earthquakeViewModel.getAllEarthquakes().observe(this, object : Observer<EarthquakeRoot> {
             override fun onChanged(t: EarthquakeRoot?) {
                 earthquakeRoot = t
                 activityMainBinding.earthquakeRoot = t
-
-                val earthquakeAdapter = EarthquakeAdapter(t!!.features,this@MainActivity)
+                activityMainBinding.showProgress = false
+                val earthquakeAdapter = EarthquakeAdapter(t!!.features, this@MainActivity)
                 recycler_view.setHasFixedSize(true)
                 recycler_view.layoutManager = LinearLayoutManager(applicationContext)
                 recycler_view.adapter = earthquakeAdapter

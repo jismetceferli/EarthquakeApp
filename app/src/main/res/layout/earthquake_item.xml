@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="earthquake"
             type="com.example.earthquakeapp.api.Properties" />
@@ -10,12 +12,10 @@
             type="com.example.recyclerviewkotlin.mvvm.EarthquakeViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,11 +40,11 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/number_circle"
-                    android:backgroundTint="@{earthquake.mag>5 ? @color/dark_gold : earthquake.mag>4 ? @color/dark_red : @color/blue}"
+                    android:backgroundTint="@{earthquake.mag>=5 ? @color/dark_gold : earthquake.mag>=4 ? @color/dark_red :earthquake.mag>=3 ? @color/blue : @color/dark_white}"
                     android:gravity="center"
                     android:shadowColor="@android:color/white"
                     android:shadowRadius="10.0"
-                    android:text="@{Double.toString(earthquake.mag)}"
+                    android:text="@{Double.toString(handler.roundOffDecimal(earthquake.mag))}"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"

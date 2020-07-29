@@ -11,7 +11,7 @@
 
         <variable
             name="earthquakeHandler"
-            type="com.example.earthquakeapp.EarthquakeHandler" />
+            type="com.example.recyclerviewkotlin.mvvm.EarthquakeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

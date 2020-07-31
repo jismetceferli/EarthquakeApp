@@ -15,6 +15,7 @@ import com.example.earthquakeapp.api.EarthquakeRoot
 import com.example.earthquakeapp.api.Properties
 import com.example.earthquakeapp.util.CalendarUtil
 import com.example.earthquakeapp.util.EarthquakeAdapter
+import java.lang.Exception
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -54,9 +55,9 @@ class EarthquakeViewModel : ViewModel() {
     fun showAllEarthquakes(view: View, earthquakeRoot: EarthquakeRoot) {
 
         val intent = Intent(view.context, EarthquakeMapsActivity::class.java)
-        intent.putExtra("quakes", earthquakeRoot)
-        intent.putExtra("fromWhere", MainActivity.ALL_QUAKES)
-        view.context.startActivity(intent)
+            intent.putExtra("quakes", earthquakeRoot)
+            intent.putExtra("fromWhere", MainActivity.ALL_QUAKES)
+            view.context.startActivity(intent)
     }
 
     fun roundOffDecimal(number: Double): Double? {
@@ -73,9 +74,9 @@ class EarthquakeViewModel : ViewModel() {
         view.context.startActivity(intent)
     }
 
-    fun finishActivity(view :View){
+    fun finishActivity(view: View) {
 
-        val activity : Activity = view.context as Activity
+        val activity: Activity = view.context as Activity
         activity.finish()
     }
 

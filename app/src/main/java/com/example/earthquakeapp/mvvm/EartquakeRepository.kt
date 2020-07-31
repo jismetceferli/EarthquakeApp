@@ -2,9 +2,9 @@ package com.example.recyclerviewkotlin.mvvm
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.earthquakeapp.api.ApiService
 import com.example.earthquakeapp.api.EarthquakeRoot
-import com.example.recyclerviewkotlin.api.ApiService
-import com.example.recyclerviewkotlin.api.RetrofitClientInstance
+import com.example.earthquakeapp.api.RetrofitClientInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
